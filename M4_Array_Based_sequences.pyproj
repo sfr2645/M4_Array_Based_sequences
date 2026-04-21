@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="infix_converter.py" />
     <Compile Include="M4_Array_Based_sequences.py" />
+    <Compile Include="postfix_evaluator.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
