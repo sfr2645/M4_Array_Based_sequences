@@ -1,22 +1,27 @@
-class Stack:
-    def __init__(self):
-        self.items = []
+from stack import Stack
 
-    def push(self, item):
-        self.items.append(item)
+class PostfixEvaluator:
+    def __init__(self, expression):
+        self.expression = expression
 
-    def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-        raise IndexError("Pop from empty stack.")
+    def evaluate(self):
+        stack = Stack()
+        tokens = self.expression.split()
 
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        raise IndexError("Peek from empty stack.")
+        for token in tokens:
+            if token.isdigit():
+                stack.push(int(token))
+            else:
+                operand2 = stack.pop()
+                operand1 = stack.pop()
 
-    def is_empty(self):
-        return len(self.items) == 0
+                if token == '+':
+                    stack.push(operand1 + operand2)
+                elif token == '-':
+                    stack.push(operand1 - operand2)
+                elif token == '*':
+                    stack.push(operand1 * operand2)
+                elif token == '/':
+                    stack.push(operand1 / operand2)
 
-    def size(self):
-        return len(self.items)
+        return stack.pop()
