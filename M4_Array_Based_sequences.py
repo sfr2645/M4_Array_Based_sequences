@@ -22,7 +22,7 @@ class InfixToPostfixConverter:
                     output.append(stack.pop())
                 stack.pop()
 
-            else:  # operator
+            else:
                 while (not stack.is_empty() and
                        stack.peek() != '(' and
                        self.precedence[stack.peek()] >= self.precedence[token]):
