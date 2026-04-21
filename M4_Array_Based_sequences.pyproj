@@ -25,6 +25,7 @@
     <Compile Include="M4_Array_Based_sequences.py" />
     <Compile Include="postfix_evaluator.py" />
     <Compile Include="singly_linked_list.py" />
+    <Compile Include="split_evens_odds.py" />
     <Compile Include="stack.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
