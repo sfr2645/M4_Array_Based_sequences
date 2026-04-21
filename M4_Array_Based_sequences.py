@@ -1,27 +1,35 @@
 from stack import Stack
 
-class PostfixEvaluator:
+class InfixToPostfixConverter:
     def __init__(self, expression):
         self.expression = expression
+        self.precedence = {'+': 1, '-': 1, '*': 2, '/': 2}
 
-    def evaluate(self):
+    def convert(self):
         stack = Stack()
+        output = []
         tokens = self.expression.split()
 
         for token in tokens:
-            if token.isdigit():
-                stack.push(int(token))
-            else:
-                operand2 = stack.pop()
-                operand1 = stack.pop()
+            if token.isalnum():  # operands (A, B, etc.)
+                output.append(token)
 
-                if token == '+':
-                    stack.push(operand1 + operand2)
-                elif token == '-':
-                    stack.push(operand1 - operand2)
-                elif token == '*':
-                    stack.push(operand1 * operand2)
-                elif token == '/':
-                    stack.push(operand1 / operand2)
+            elif token == '(':
+                stack.push(token)
 
-        return stack.pop()
+            elif token == ')':
+                while not stack.is_empty() and stack.peek() != '(':
+                    output.append(stack.pop())
+                stack.pop()  # remove '('
+
+            else:  # operator
+                while (not stack.is_empty() and
+                       stack.peek() != '(' and
+                       self.precedence[stack.peek()] >= self.precedence[token]):
+                    output.append(stack.pop())
+                stack.push(token)
+
+        while not stack.is_empty():
+            output.append(stack.pop())
+
+        return " ".join(output)
