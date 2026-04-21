@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="infix_converter.py" />
     <Compile Include="M4_Array_Based_sequences.py" />
+    <Compile Include="module1.py" />
     <Compile Include="postfix_evaluator.py" />
     <Compile Include="singly_linked_list.py" />
     <Compile Include="split_evens_odds.py" />
