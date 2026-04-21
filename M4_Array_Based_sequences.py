@@ -20,7 +20,7 @@ class InfixToPostfixConverter:
             elif token == ')':
                 while not stack.is_empty() and stack.peek() != '(':
                     output.append(stack.pop())
-                stack.pop()  # remove '('
+                stack.pop()
 
             else:  # operator
                 while (not stack.is_empty() and
