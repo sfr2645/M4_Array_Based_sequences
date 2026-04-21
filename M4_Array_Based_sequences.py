@@ -1,22 +1,44 @@
-class Stack:
-    def __init__(self):
-        self.items = []
+from postfix_evaluator import PostfixEvaluator
+from infix_converter import InfixToPostfixConverter
 
-    def push(self, item):
-        self.items.append(item)
+def main():
+    postfix = [
+        "5 3 +",
+        "8 2 - 3 +",
+        "5 3 8 * +",
+        "6 2 / 3 +",
+        "5 8 + 3 -",
+        "5 3 + 8 *",
+        "8 2 3 * + 6 -",
+        "5 3 8 * + 2 /",
+        "8 2 + 3 6 * -",
+        "5 3 + 8 2 / -"
+    ]
 
-    def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-        raise IndexError("Pop from empty stack")
+    infix = [
+        "A + B",
+        "A + B * C",
+        "( A + B ) * C",
+        "A * B + C / D",
+        "( A + B ) * ( C - D )",
+        "A + B * C - D / E",
+        "A * ( B + C ) / D",
+        "( A + B * C ) / ( D - E )",
+        "A + ( B - C ) * D",
+        "( A + B * ( C - D ) ) / E"
+    ]
 
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        raise IndexError("Peek from empty stack")
+    print("----- Postfix Evaluator -----")
+    for expr in postfix:
+        evaluator = PostfixEvaluator(expr)
+        result = evaluator.evaluate()
+        print(f"[{expr}] = {result}")
 
-    def is_empty(self):
-        return len(self.items) == 0
+    print("\n----- Infix to Postfix Converter -----")
+    for expr in infix:
+        converter = InfixToPostfixConverter(expr)
+        result = converter.convert()
+        print(f"[{expr}] -> [{result}]")
 
-    def size(self):
-        return len(self.items)
+if __name__ == "__main__":
+    main()
