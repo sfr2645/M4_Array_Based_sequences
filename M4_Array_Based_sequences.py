@@ -11,7 +11,7 @@ class InfixToPostfixConverter:
         tokens = self.expression.split()
 
         for token in tokens:
-            if token.isalnum():  # operands (A, B, etc.)
+            if token.isalnum():
                 output.append(token)
 
             elif token == '(':
